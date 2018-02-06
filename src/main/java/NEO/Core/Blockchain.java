@@ -153,7 +153,7 @@ public abstract class Blockchain implements AutoCloseable {
      *  <returns>返回对应区块的散列值</returns>
      * @throws Exception 
      */
-    public abstract UInt256 getBlockHash(int height);
+    public abstract UInt256 getBlockHash(int height) throws Exception;
 
     /**
      *  根据指定的高度，返回对应的区块头信息
