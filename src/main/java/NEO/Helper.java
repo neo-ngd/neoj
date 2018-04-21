@@ -1,5 +1,7 @@
 package NEO;
 
+import NEO.Core.Scripts.Program;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -65,4 +67,15 @@ public class Helper {
 	public static String now() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
 	}
+    public static byte[] addBytes(byte[] data1, byte[] data2) {
+        byte[] data3 = new byte[data1.length + data2.length];
+        System.arraycopy(data1, 0, data3, 0, data1.length);
+        System.arraycopy(data2, 0, data3, data1.length, data2.length);
+        return data3;
+    }
+    public static String getCodeHash(String codeHexStr){
+        UInt160 code = Program.toScriptHash(Helper.hexToBytes(codeHexStr));
+        String codeHash = Helper.toHexString(code.toArray());
+        return codeHash;
+    }
 }

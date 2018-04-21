@@ -18,7 +18,7 @@ import NEO.IO.Json.JBoolean;
 import NEO.IO.Json.JObject;
 import NEO.IO.Json.JString;
 import NEO.Wallets.Contract;
-import NEO.Wallets.ContractParameterType;
+import NEO.Core.Contract.ContractParameterType;
 
 /**
  *  签名上下文
@@ -68,7 +68,13 @@ public class SignatureContext {
         this.signatures = (Map<ECPoint, byte[]>[]) Array.newInstance(Map.class, scriptHashes.length);
         this.completed = new boolean[scriptHashes.length];
     }
-
+    public SignatureContext(Signable signable,UInt160[] scriptHashes) {
+        this.signable = signable;
+        this.scriptHashes = scriptHashes;
+        this.redeemScripts = new byte[scriptHashes.length][];
+        this.signatures = (Map<ECPoint, byte[]>[]) Array.newInstance(Map.class, this.scriptHashes.length);
+        this.completed = new boolean[scriptHashes.length];
+    }
     /**
      *  添加一个签名
      *  <param name="contract">该签名所对应的合约</param>
