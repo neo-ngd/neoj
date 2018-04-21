@@ -42,7 +42,7 @@ public abstract class Transaction extends Inventory {
 	/**
 	 * 验证脚本
 	 */
-	public Program[] scripts;
+	public Program[] scripts = new Program[0];
 	
 	protected Transaction(TransactionType type) {
 		this.type = type;

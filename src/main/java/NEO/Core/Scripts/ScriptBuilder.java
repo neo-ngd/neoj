@@ -44,7 +44,12 @@ public class ScriptBuilder implements AutoCloseable {
 			throw new RuntimeException(ex);
 		}
     }
-
+    public ScriptBuilder push(boolean b) {
+        if(b == true) {
+            return add(ScriptOp.OP_1);
+        }
+        return add(ScriptOp.OP_0);
+    }
     /**
      *  添加一段脚本，该脚本的作用是将一个整数压入栈中
      *  <param name="number">要压入栈中的整数</param>
@@ -99,6 +104,9 @@ public class ScriptBuilder implements AutoCloseable {
         return push(hash.toArray());
     }
 
+    public ScriptBuilder pushPack() {
+        return add(ScriptOp.OP_PACK);
+    }
     /**
      *  获取脚本生成器中包含的脚本代码
      */

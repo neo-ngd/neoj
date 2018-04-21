@@ -21,10 +21,6 @@ public enum TransactionType {
      */
     DataFile(0x12),
     /**
-     * 
-     */
-    DeployCode(0xd0),
-    /**
      *  
      */
     PrivacyPayload(0x20),
@@ -55,6 +51,8 @@ public enum TransactionType {
      * 销毁资产
      */
     DestroyTransaction(0x18),
+    PublishTransaction(0xd0),
+    InvocationTransaction(0xd1),
     
     ;
 

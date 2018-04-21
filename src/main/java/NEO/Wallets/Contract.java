@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+import NEO.Core.Contract.ContractParameterType;
 import org.bouncycastle.math.ec.ECPoint;
 
 import NEO.UInt160;

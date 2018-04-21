@@ -31,8 +31,9 @@ public class TransactionAttribute implements Serializable {
 		// usage
         writer.writeByte(usage.value());
         // data
-        if (usage == TransactionAttributeUsage.Script 
-        		|| usage == TransactionAttributeUsage.DescriptionUrl
+		if (usage == TransactionAttributeUsage.Script){
+			writer.write(data);
+		}else if( usage == TransactionAttributeUsage.DescriptionUrl
         		|| usage == TransactionAttributeUsage.Description
         		|| usage == TransactionAttributeUsage.Nonce) {
             writer.writeVarBytes(data);
@@ -46,8 +47,9 @@ public class TransactionAttribute implements Serializable {
 		// usage
 		usage = TransactionAttributeUsage.valueOf(reader.readByte());
 		// data
-        if (usage == TransactionAttributeUsage.Script
-        		|| usage == TransactionAttributeUsage.DescriptionUrl
+        if (usage == TransactionAttributeUsage.Script){
+			data = reader.readBytes(20);
+		}else if(usage == TransactionAttributeUsage.DescriptionUrl
         		|| usage == TransactionAttributeUsage.Description
         		|| usage == TransactionAttributeUsage.Nonce) {
         			data = reader.readVarBytes(255);
