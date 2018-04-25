@@ -2,7 +2,8 @@ package NEO.sdk.abi;
 
 import com.alibaba.fastjson.JSON;
 
-import java.lang.reflect.Array;
+import java.util.List;
+
 
 /**
  *
@@ -40,7 +41,7 @@ public class Parameter {
                 int tmp = (int) value;
                 this.value = JSON.toJSONString(tmp);
             } else if ("Array".equals(type)) {
-                Array tmp = (Array) value;
+                List tmp = (List) value;
                 this.value = JSON.toJSONString(tmp);
             } else if ("InteropInterface".equals(type)) {
                 Object tmp = (Object) value;
