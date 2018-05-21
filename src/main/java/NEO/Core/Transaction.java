@@ -146,7 +146,7 @@ public abstract class Transaction extends Inventory {
 	public static Transaction deserializeFrom(BinaryReader reader) throws IOException {
         try {
             TransactionType type = TransactionType.valueOf(reader.readByte());
-            String typeName = "DNA.Core." + type.toString();
+            String typeName = "NEO.Core." + type.toString();
             Transaction transaction = (Transaction)Class.forName(typeName).newInstance();
             transaction.deserializeUnsignedWithoutType(reader);
 			transaction.scripts = reader.readSerializableArray(Program.class);
