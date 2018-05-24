@@ -57,7 +57,7 @@ public class Nep5Demo {
 
 		AbiFunction func = abiinfo.getFunction("Transfer");//BalanceOf
 		func.name = func.name.toLowerCase();
-		func.setParamsValue(Wallet.toScriptHash(contract1.address()).toArray(),Wallet.toScriptHash(contract2.address()).toArray(),1);
+		func.setParamsValue(Wallet.toScriptHash(contract1.address()).toArray(),Wallet.toScriptHash(contract2.address()).toArray(),Long.valueOf(1));
 
 		//make transaction
 		Transaction tx = SmartContractTx.makeInvocationTransaction(Helper.reverse("5bb169f915c916a5e30a3c13a5e0cd228ea26826"),account1.publicKey,func);

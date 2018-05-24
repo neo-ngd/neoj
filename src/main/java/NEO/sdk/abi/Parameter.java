@@ -38,7 +38,7 @@ public class Parameter {
                 boolean tmp = (boolean) value;
                 this.value = JSON.toJSONString(tmp);
             } else if ("Integer".equals(type)) {
-                int tmp = (int) value;
+                long tmp = (long) value;
                 this.value = JSON.toJSONString(tmp);
             } else if ("Array".equals(type)) {
                 List tmp = (List) value;

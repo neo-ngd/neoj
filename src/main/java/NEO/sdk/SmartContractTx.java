@@ -26,14 +26,6 @@ public class SmartContractTx {
     public SmartContractTx(){
 
     }
-    public static byte[] Int2Bytes_LittleEndian(int iValue){
-        byte[] rst = new byte[4];
-        rst[0] = (byte)(iValue & 0xFF);
-        rst[1] = (byte)((iValue & 0xFF00) >> 8 );
-        rst[2] = (byte)((iValue & 0xFF0000) >> 16 );
-        rst[3] = (byte)((iValue & 0xFF000000) >> 24 );
-        return rst;
-    }
     public static Transaction makeInvocationTransaction(String contractAddress, ECPoint publicKey, AbiFunction abiFunction) throws Exception {
         if (contractAddress == null) {
             throw new Exception("null contractHash");
@@ -50,7 +42,7 @@ public class SmartContractTx {
             } else if ("Boolean".equals(obj.getType())) {
                 tmp.add(JSON.parseObject(obj.getValue(), boolean.class));
             } else if ("Integer".equals(obj.getType())) {
-                tmp.add(JSON.parseObject(obj.getValue(), int.class));
+                tmp.add(JSON.parseObject(obj.getValue(), Long.class));
             } else if ("Array".equals(obj.getType())) {
                 tmp.add(JSON.parseObject(obj.getValue(), Array.class));
             } else if ("InteropInterface".equals(obj.getType())) {
@@ -81,8 +73,8 @@ public class SmartContractTx {
                     builder.push((byte[]) val);
                 } else if (val instanceof Boolean) {
                     builder.push((Boolean) val);
-                } else if (val instanceof Integer) {
-                    builder.push(new BigInteger(Int2Bytes_LittleEndian((int)val)));
+                } else if (val instanceof Long) {
+                    builder.push(BigInteger.valueOf((long)val));
                 } else if (val instanceof List) {
                     List tmp = (List) val;
                     createCodeParamsScript(builder, tmp);
@@ -111,8 +103,8 @@ public class SmartContractTx {
                     sb.push((byte[]) val);
                 } else if (val instanceof Boolean) {
                     sb.push((Boolean) val);
-                } else if (val instanceof Integer) {
-                    sb.push(new BigInteger(Int2Bytes_LittleEndian((int)val)));
+                } else if (val instanceof Long) {
+                    sb.push(BigInteger.valueOf(((long)val)));
                 } else if (val instanceof List) {
                     List tmp = (List) val;
                     createCodeParamsScript(sb, tmp);
