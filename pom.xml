@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>DNA-SDK</groupId>
-  <artifactId>DNA-SDK</artifactId>
+  <groupId>NEO-SDK</groupId>
+  <artifactId>NEO-SDK</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>DNA-SDK</name>
+  <name>NEO-SDK</name>
   <url>http://maven.apache.org</url>
 
   <properties>

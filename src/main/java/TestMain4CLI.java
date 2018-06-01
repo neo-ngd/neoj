@@ -13,7 +13,7 @@ import NEO.sdk.wallet.AccountManager;
 
 
 /**
- * DNA sdk 测试Demo
+ * NEO sdk 测试Demo
  * 
  * @author 12146
  * 
@@ -246,11 +246,11 @@ public class TestMain4CLI {
 //		UserWalletManager wm = UserWalletManager.getWallet(path, url, accessToken);
 		
 		// v1.1
-		String dnaUrl = "http://127.0.0.1:20334";
-		String dnaToken = "";
+		String neoUrl = "http://127.0.0.1:20334";
+		String neoToken = "";
 		String path = "./4.db3";
-		AccountManager wm = AccountManager.getWallet(path, dnaUrl, dnaToken);
-		print(String.format("[param=%s,%s]", dnaUrl, path));
+		AccountManager wm = AccountManager.getWallet(path, neoUrl, neoToken);
+		print(String.format("[param=%s,%s]", neoUrl, path));
 		print(String.format("start to test....hh:%s", wm.getBlockHeight()));
 		return wm;
 	}

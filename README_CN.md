@@ -1,10 +1,10 @@
-# DNA SDK 手册
+# NEO SDK 手册
 
 
 
 ## 1 准备工作
 
-*** 下载DNA SKD(java版本)， 配置JAVA8运行环境
+*** 下载NEO SKD(java版本)， 配置JAVA8运行环境
 
 > > 注意： 配置java运行环境后运行程序时如出现如下错误：
 > >
@@ -22,7 +22,7 @@
 
 ### 2.1  OAuth认证
 
-DNA默认关闭认证选项，使用SDK可以直接访问DNA。在联盟链或私有链有认证要求的场景下，您需要首先完成用户注册，并获取授权accessToken才能访问应用。用户注册和获取Token请参考: [https://forum.dnaproject.org/t/dna/112](https://forum.dnaproject.org/t/dna/112)。
+NEO默认关闭认证选项，使用SDK可以直接访问NEO。在联盟链或私有链有认证要求的场景下，您需要首先完成用户注册，并获取授权accessToken才能访问应用。用户注册和获取Token请参考: [https://forum.dnaproject.org/t/dna/112](https://forum.dnaproject.org/t/dna/112)。
 
 
 
@@ -39,10 +39,10 @@ DNA默认关闭认证选项，使用SDK可以直接访问DNA。在联盟链或�
 调用每一个接口方法之前必须实例化账户管理器，后续的接口都是基于账户管理来调用的。实例化账户管理器所需参数包括：连接地址url，账户存储位置路径path，访问令牌accessToken。
 
 ```
-String dnaUrl = "http://127.0.0.1:20334";
-String dnaToken = "";
+String neoUrl = "http://127.0.0.1:20334";
+String neoToken = "";
 String path = "./dat/3.db3";
-AccountManager wm = AccountManager.getWallet(path, dnaUrl, dnaToken);
+AccountManager wm = AccountManager.getWallet(path, neoUrl, neoToken);
 ```
 
 
@@ -283,10 +283,10 @@ List<String> list = wm.listAccount();
 
 ```
 //实例化账户管理器
-String dnaUrl = "http://127.0.0.1:20334";	  // DNA节点地址
-String dnaToken = "";						// 访问令牌，非必需项，如开启OAuth认证，则需要填写	
+String neoUrl = "http://127.0.0.1:20334";	  // NEO节点地址
+String neoToken = "";						// 访问令牌，非必需项，如开启OAuth认证，则需要填写
 String path = "./dat/3.db3";				 // 钱包路径
-AccountManager wm = AccountManager.getWallet(path, dnaUrl, dnaToken);
+AccountManager wm = AccountManager.getWallet(path, neoUrl, neoToken);
 ```
 
 
@@ -470,7 +470,7 @@ List<String> list = wm.listAccount();
 
 ## 5 开发说明
 
-​	该SDK供客户端使用，其中含有账户信息的管理，比如合约地址、公钥、私钥，这些信息保存至客户端数据库中。具体的数据库可根据需求自由选择，目前实现的数据库有sqlite、mysql，sqlite是一个文件数据库，初始化时需要传递路径，上面的示例是根据该sqlite保存账户信息的数据库实现给出的，mysql使用时还需要创建对应的表，以及实现具体的数据库连接。通过SDK接入DNA区块链时，可以直接使用当前Sqlite数据库保存账户的公私钥信息的UserWalletManager，也可自定义一个账户管理器来管理账户私密信息。自己实现账户管理器可参考DNA.Implementations.Wallets.SQLite.UserWallet 类。
+​	该SDK供客户端使用，其中含有账户信息的管理，比如合约地址、公钥、私钥，这些信息保存至客户端数据库中。具体的数据库可根据需求自由选择，目前实现的数据库有sqlite、mysql，sqlite是一个文件数据库，初始化时需要传递路径，上面的示例是根据该sqlite保存账户信息的数据库实现给出的，mysql使用时还需要创建对应的表，以及实现具体的数据库连接。通过SDK接入NEO区块链时，可以直接使用当前Sqlite数据库保存账户的公私钥信息的UserWalletManager，也可自定义一个账户管理器来管理账户私密信息。自己实现账户管理器可参考NEO.Implementations.Wallets.SQLite.UserWallet 类。
 
 
 

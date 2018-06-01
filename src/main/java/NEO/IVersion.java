@@ -10,9 +10,9 @@ package NEO;
 public class IVersion {
 	private static final String version = "sdk-v0.6";
 	public static final String[] versionInfo = new String[] {
-		"project:" + "DNA SDK",
+		"project:" + "NEO SDK",
 		"version:" + version,
-		"description:"+ "This version is suitable for DNA-v0.6alpha,  named sdk-v0.6",
+		"description:"+ "This version is suitable for NEO-v0.6alpha,  named sdk-v0.6",
 		"lastModified:"+"2017-07-10",
 		"author:"+"ts"
 	};

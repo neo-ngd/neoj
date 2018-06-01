@@ -1,7 +1,7 @@
 package NEO.Core;
 
 /**
- * list transaction types supported by DNA 
+ * list transaction types supported by NEO
  */
 public enum TransactionType {
     /**

@@ -115,7 +115,7 @@ public class Block extends Inventory {
 		}
         // 交易
 //      transactions = new Transaction[(int) reader.readVarInt(0x10000000)];//xy
-        transactions = new Transaction[(int) reader.readInt()];	//dna
+        transactions = new Transaction[reader.readInt()];
         for (int i = 0; i < transactions.length; i++) {
             transactions[i] = Transaction.deserializeFrom(reader);
         }

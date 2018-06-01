@@ -52,7 +52,7 @@ public interface Signable extends Serializable {
     default byte[] sign(Account account) {
     	ECDSASigner signer = new ECDSASigner();
     	signer.init(true, new ECPrivateKeyParameters(new BigInteger(1, account.privateKey), ECC.secp256r1));
-    	BigInteger[] bi = signer.generateSignature(Digest.sha256(getHashData()));// dna
+    	BigInteger[] bi = signer.generateSignature(Digest.sha256(getHashData()));
     	byte[] signature = new byte[64];
     	System.arraycopy(BigIntegers.asUnsignedByteArray(32, bi[0]), 0, signature, 0, 32);
     	System.arraycopy(BigIntegers.asUnsignedByteArray(32, bi[1]), 0, signature, 32, 32);
