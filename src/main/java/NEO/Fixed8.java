@@ -12,9 +12,7 @@ import NEO.IO.Serializable;
  * Number type in block. this type Can be accurate to 64-bit fixed-point, the rounding 
  * error to a minimum. By controlling the multiplier's accuracy, 
  * the rounding error can be completely eliminated
- * 
- * @author 12146
- * @since  JDK1.8
+ *
  */
 public class Fixed8 implements Comparable<Fixed8>, Serializable {
     private static final long D = 100000000L;
@@ -45,6 +43,16 @@ public class Fixed8 implements Comparable<Fixed8>, Serializable {
         return new Fixed8(-value);
     }
 
+    public Fixed8 ceiling() {
+        long remainder = value % D;
+        if (remainder == 0) return this;
+        if (remainder > 0) {
+            return new Fixed8(value - remainder + D);
+        } else {
+            return new Fixed8(value - remainder);
+        }
+    }
+
     @Override
     public int compareTo(Fixed8 other) {
         return Long.compare(value, other.value);
@@ -63,10 +71,7 @@ public class Fixed8 implements Comparable<Fixed8>, Serializable {
     }
     
     public static Fixed8 fromLong(long val) {
-    	if (val < 0 || val > Long.MAX_VALUE / D) {
-    		throw new IllegalArgumentException();
-    	}
-    	return new Fixed8(val * D);
+    	return new Fixed8(Math.multiplyExact(val, D));
     }
     
     public static Fixed8 parse(String s) {
@@ -119,10 +124,17 @@ public class Fixed8 implements Comparable<Fixed8>, Serializable {
         return v.toPlainString();
     }
 
-    public static boolean tryParse(String s, Fixed8 result) {
+    /**
+     * Try to parse string into Fixed8
+     * @param s The string
+     * @param out_result out parameter. The value will be changed as output
+     * @return true if successfully parsed.
+     */
+    public static boolean tryParse(String s, Fixed8 out_result) {
         try {
             BigDecimal val = new BigDecimal(s);
-            result.value = val.longValueExact();
+            Fixed8 fixed8Val = fromDecimal(val);
+            out_result.value = fixed8Val.value;
             return true;
         } catch(NumberFormatException | ArithmeticException ex) {
             return false;
@@ -134,7 +146,7 @@ public class Fixed8 implements Comparable<Fixed8>, Serializable {
     }
 
     public Fixed8 multiply(long other) {
-        return new Fixed8(value * other);
+        return new Fixed8(Math.multiplyExact(value, other));
     }
 
     public Fixed8 divide(long other) {

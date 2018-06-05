@@ -440,7 +440,7 @@ public class AccountManager {
 		uw.saveTransaction(signedTx4Des);
 		String txHex = Helper.toHexString(signedTx4Des.toArray());;
 		OnChainSDKHelper.printTransaction(signedTx4Des);
-		System.out.println("tx.a:"+Helper.getbyteStr(Helper.hexToBytes(txHex)));
+		System.out.println("tx.a:"+Helper.getByteStr(Helper.hexToBytes(txHex)));
 		System.out.println("tx.s:"+txHex);
 		System.out.println("txHex:"+txHex);
 		boolean f8 = false;//restNode.sendRawTransaction(txHex);

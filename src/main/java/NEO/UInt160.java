@@ -1,12 +1,9 @@
 package NEO;
 
 /**
- * Custom type which inherits base class defines 20-bit data, 
- * it mostly used to defined contract address
+ * Custom type which inherits IntBase class that defines 20-bytes/160-bits data,
+ * It mostly is used to defined contract address
  * 
- * @author 12146
- * @since  JDK1.8
- *
  */
 public class UInt160 extends UIntBase implements Comparable<UInt160> {
     public static final UInt160 ZERO = new UInt160();
@@ -32,6 +29,11 @@ public class UInt160 extends UIntBase implements Comparable<UInt160> {
         return 0;
     }
 
+    /**
+     * Parse string into UInt160
+     * @param value The string is Hex decimal format in BIG ENDIAN
+     * @return the parsed UInt160 object
+     */
     public static UInt160 parse(String value) {
         if (value == null) {
             throw new NullPointerException();
@@ -46,10 +48,16 @@ public class UInt160 extends UIntBase implements Comparable<UInt160> {
         return new UInt160(Helper.reverse(v));
     }
 
-    public static boolean tryParse(String s, UInt160 result) {
+    /**
+     * Try to parse string into UInt160
+     * @param s The string is Hex decimal format in BIG ENDIAN
+     * @param out_result out parameter. The value will be changed as output
+     * @return true if successfully parsed.
+     */
+    public static boolean tryParse(String s, UInt160 out_result) {
         try {
             UInt160 v = parse(s);
-            result.data_bytes = v.data_bytes;
+            out_result.data_bytes = v.data_bytes;
             return true;
         } catch (Exception e) {
             return false;

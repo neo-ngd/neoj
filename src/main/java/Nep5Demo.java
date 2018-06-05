@@ -43,7 +43,7 @@ public class Nep5Demo {
 		contract2 = Contract.createSignatureContract(account2.publicKey);
 		System.out.println("contract2 address:" + contract2.address());
 
-		//read smarcontract abi file
+		//read smart contract abi file
 		InputStream is2 = new FileInputStream("nep-5.abi.json");
 		byte[] bys2 = new byte[is2.available()];
 		is2.read(bys2);

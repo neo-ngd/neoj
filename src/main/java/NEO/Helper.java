@@ -9,11 +9,14 @@ import java.util.Date;
 /**
  * Byte Handle Helper
  * 
- * @author 12146
- * @since  JDK1.8
  */
 public class Helper {
-	public static String getbyteStr(byte[] bs)  {
+    /**
+     * 以十进制格式显示byte 数组，中间以空格分隔。
+     * @param bs
+     * @return 以十进制格式显示byte 数组，中间以空格分隔。
+     */
+	public static String getByteStr(byte[] bs)  {
     	StringBuilder sb = new StringBuilder();
     	for(byte b: bs) {
     		sb.append(" ").append(Byte.toUnsignedInt(b));
@@ -52,11 +55,11 @@ public class Helper {
         }
         return sb.toString();
     }
-    
+
     public static String reverse(String value) {
     	return toHexString(reverse(hexToBytes(value)));
     }
-    
+
     public static byte[] removePrevZero(byte[] bt) {
 		if(bt.length == 33 && bt[0] == 0) {
 			return Arrays.copyOfRange(bt, 1, 33);
@@ -64,6 +67,9 @@ public class Helper {
 		return bt;
 	}
 
+    /**
+     * @deprecated 未被使用
+     */
 	public static String now() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
 	}
@@ -73,6 +79,10 @@ public class Helper {
         System.arraycopy(data2, 0, data3, data1.length, data2.length);
         return data3;
     }
+
+    /**
+     * @deprecated 未被使用
+     */
     public static String getCodeHash(String codeHexStr){
         UInt160 code = Program.toScriptHash(Helper.hexToBytes(codeHexStr));
         String codeHash = Helper.toHexString(code.toArray());

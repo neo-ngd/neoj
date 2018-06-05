@@ -10,9 +10,6 @@ import NEO.IO.*;
  * Custom type base abstract class, it defines the storage and the serialization 
  * and deserialization of actual data
  * 
- * @author 12146
- * @since  JDK1.8
- *
  */
 public abstract class UIntBase implements Serializable {
     protected byte[] data_bytes;
@@ -53,8 +50,8 @@ public abstract class UIntBase implements Serializable {
     }
 
     /**
-     * 转为16进制字符串
-     * @return 返回16进制字符串
+     * 转为16进制字符串(Hex decimal format string in BIG ENDIAN)
+     * @return 返回16进制字符串(Hex decimal format string in BIG ENDIAN)
      */
     @Override
     public String toString() {

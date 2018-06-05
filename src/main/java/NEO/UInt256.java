@@ -1,12 +1,9 @@
 package NEO;
 
 /**
- * Custom type which inherits base class defines 32-bit data, 
- * it mostly used to defined transaction identity
+ * Custom type which inherits UIntBase class that defines 32-bytes/256-bits data,
+ * it mostly is used to defined transaction identity
  * 
- * @author 12146
- * @since  JDK1.8
- *
  */
 public class UInt256 extends UIntBase implements Comparable<UInt256> {
     public static final UInt256 ZERO = new UInt256();
@@ -32,6 +29,11 @@ public class UInt256 extends UIntBase implements Comparable<UInt256> {
         return 0;
     }
 
+    /**
+     * Parse string into UInt256
+     * @param s The string is Hex decimal format in BIG ENDIAN
+     * @return the parsed UInt256 object
+     */
     public static UInt256 parse(String s) {
         if (s == null) {
             throw new NullPointerException(); 
@@ -40,16 +42,22 @@ public class UInt256 extends UIntBase implements Comparable<UInt256> {
             s = s.substring(2);
         }
         if (s.length() != 64) {
-            throw new IllegalArgumentException(String.format("字符串\"{0}\"无法识别为正确的UInt256。", s));
+            throw new IllegalArgumentException();
         }
         byte[] v = Helper.hexToBytes(s);
         return new UInt256(Helper.reverse(v));
     }
 
-    public static boolean tryParse(String s, UInt256 result) {
+    /**
+     * Try to parse string into UInt256
+     * @param s The string is Hex decimal format in BIG ENDIAN
+     * @param out_result out parameter. The value will be changed as output
+     * @return true if successfully parsed.
+     */
+    public static boolean tryParse(String s, UInt256 out_result) {
         try {
             UInt256 v = parse(s);
-            result.data_bytes = v.data_bytes;
+            out_result.data_bytes = v.data_bytes;
             return true;
         } catch (Exception e) {
             return false;
