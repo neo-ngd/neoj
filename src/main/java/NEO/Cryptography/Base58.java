@@ -11,17 +11,24 @@ public class Base58 {
     
     /**
      *  解码
-     *  <param name="input">要解码的字符串</param>
-     *  <returns>返回解码后的字节数组</returns>
+     *  @param input 要解码的字符串
+     *  @return 返回解码后的字节数组
      */
     public static byte[] decode(String input) {
         BigInteger bi = BigInteger.ZERO;
-        for (int i = input.length() - 1; i >= 0; i--) {
+        //for (int i = input.length() - 1; i >= 0; i--) {
+        //    int index = ALPHABET.indexOf(input.charAt(i));
+        //    if (index == -1) {
+        //        throw new IllegalArgumentException();
+        //    }
+        //    bi = bi.add(BASE.pow(input.length() - 1 - i).multiply(BigInteger.valueOf(index)));
+        //}
+        for (int i = 0; i < input.length(); i++) {
             int index = ALPHABET.indexOf(input.charAt(i));
             if (index == -1) {
                 throw new IllegalArgumentException();
             }
-            bi = bi.add(BASE.pow(input.length() - 1 - i).multiply(BigInteger.valueOf(index)));
+            bi = bi.multiply(BASE).add(BigInteger.valueOf(index));
         }
         byte[] bytes = bi.toByteArray();
         boolean stripSignByte = bytes.length > 1 && bytes[0] == 0 && bytes[1] < 0;
@@ -34,8 +41,8 @@ public class Base58 {
 
     /**
      *  编码
-     *  <param name="input">要编码的字节数组</param>
-     *  <returns>返回编码后的字符串</returns>
+     *  @param input 要编码的字节数组
+     *  @return 返回编码后的字符串
      */
     public static String encode(byte[] input) {
         BigInteger value = new BigInteger(1, input);

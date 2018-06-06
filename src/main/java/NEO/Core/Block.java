@@ -114,8 +114,8 @@ public class Block extends Inventory {
         	throw new IOException(ex);
 		}
         // 交易
-//      transactions = new Transaction[(int) reader.readVarInt(0x10000000)];//xy
-        transactions = new Transaction[reader.readInt()];
+        transactions = new Transaction[(int) reader.readVarInt(0x10000000)];
+        //transactions = new Transaction[reader.readInt()]; // Code of unknown history
         for (int i = 0; i < transactions.length; i++) {
             transactions[i] = Transaction.deserializeFrom(reader);
         }
