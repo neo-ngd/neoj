@@ -18,6 +18,7 @@ import NEO.UInt160;
 import NEO.UInt256;
 import NEO.Core.AssetType;
 import NEO.Core.Blockchain;
+import NEO.Core.ContractTransaction;
 import NEO.Core.DestroyTransaction;
 import NEO.Core.IssueTransaction;
 import NEO.Core.RecordTransaction;
@@ -29,7 +30,6 @@ import NEO.Core.TransactionAttribute;
 import NEO.Core.TransactionAttributeUsage;
 import NEO.Core.TransactionInput;
 import NEO.Core.TransactionOutput;
-import NEO.Core.TransferTransaction;
 import NEO.Core.Scripts.Program;
 import NEO.Cryptography.ECC;
 import NEO.Implementations.Blockchains.Rest.RestBlockchain;
@@ -387,8 +387,8 @@ public class AccountManager {
 	public String trf(String sendAddr, String assetid, long amount, String recvAddr, String desc) throws Exception {
 		return trf(getTrfTx(assetid, amount, recvAddr, desc), getAddress(sendAddr));
 	}
-	private String trf(TransferTransaction trfTx, UInt160 from) throws Exception {
-		TransferTransaction signedTx4Trf = uw.makeTransaction(trfTx, Fixed8.ZERO, from);
+	private String trf(ContractTransaction trfTx, UInt160 from) throws Exception {
+		ContractTransaction signedTx4Trf = uw.makeTransaction(trfTx, Fixed8.ZERO, from);
 		SignatureContext context4Trf = new SignatureContext(signedTx4Trf);
 		boolean f5 = uw.sign(context4Trf);
 		if(context4Trf.isCompleted()){
@@ -606,8 +606,8 @@ public class AccountManager {
 		return tx;
 	}
 	
-	private TransferTransaction getTrfTx(String assetId, long assetAmount, String recvAddr, String txDesc) {
-		TransferTransaction tx = new TransferTransaction();
+	private ContractTransaction getTrfTx(String assetId, long assetAmount, String recvAddr, String txDesc) {
+		ContractTransaction tx = new ContractTransaction();
 		tx.outputs = new TransactionOutput[1];
 		tx.outputs[0] = new TransactionOutput();
 		tx.outputs[0].assetId = UInt256.parse(assetId);
@@ -624,9 +624,9 @@ public class AccountManager {
 		return tx;
 	}
 	
-	private TransferTransaction getTrfTx(List<TxJoiner> recvList, String txDesc) {
+	private ContractTransaction getTrfTx(List<TxJoiner> recvList, String txDesc) {
 		int size = recvList.size();
-		TransferTransaction tx = new TransferTransaction();
+		ContractTransaction tx = new ContractTransaction();
 		tx.outputs = new TransactionOutput[size];
 		for(int i=0; i<size; ++i) {
 			TxJoiner recv = recvList.get(i);
@@ -751,8 +751,8 @@ public class AccountManager {
 			info.type = RegisterTransaction.class.getSimpleName();
 		} else if(tx instanceof IssueTransaction) {
 			info.type = IssueTransaction.class.getSimpleName();
-		} else if(tx instanceof TransferTransaction) {
-			info.type = TransferTransaction.class.getSimpleName();
+		} else if(tx instanceof ContractTransaction) {
+			info.type = ContractTransaction.class.getSimpleName();
 		} else if(tx instanceof RecordTransaction) {
 			info.type = RecordTransaction.class.getSimpleName();
 		}

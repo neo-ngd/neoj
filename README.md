@@ -1,2 +1,2 @@
-# awneo
-NEO SDK written in Java
+# neoj
+NEO SDK and Demo written in Java

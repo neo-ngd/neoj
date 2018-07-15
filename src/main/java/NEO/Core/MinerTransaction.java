@@ -5,11 +5,11 @@ import java.io.IOException;
 import NEO.IO.BinaryReader;
 import NEO.IO.BinaryWriter;
 
-public class BookKeeping extends Transaction {
+public class MinerTransaction extends Transaction {
 	private long nonce; // nonce is not exist when version=2
 
-	public BookKeeping() {
-		super(TransactionType.BookKeeping);
+	public MinerTransaction() {
+		super(TransactionType.MinerTransaction);
 	}
 
 	@Override

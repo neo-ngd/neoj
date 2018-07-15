@@ -120,8 +120,8 @@ public class Block extends Inventory {
             transactions[i] = Transaction.deserializeFrom(reader);
         }
         if (transactions.length > 0) {
-            if (transactions[0].type != TransactionType.BookKeeping 
-            		|| Arrays.stream(transactions).skip(1).anyMatch(p -> p.type == TransactionType.BookKeeping)) {
+            if (transactions[0].type != TransactionType.MinerTransaction 
+            		|| Arrays.stream(transactions).skip(1).anyMatch(p -> p.type == TransactionType.MinerTransaction)) {
                 throw new IOException();
             }
         }

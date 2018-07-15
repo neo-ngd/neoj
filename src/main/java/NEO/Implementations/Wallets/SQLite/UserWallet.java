@@ -198,8 +198,8 @@ public class UserWallet extends Wallet implements IUserManager {
         			} else if(TransactionType.IssueTransaction.value() == type) {
         				NEO.Core.Transaction tx = Serializable.from(trans[i].rawData, NEO.Core.IssueTransaction.class);
         				txMap.put(tx, trans[i].height);
-        			} else if(TransactionType.TransferTransaction.value() == type) {
-        				NEO.Core.Transaction tx = Serializable.from(trans[i].rawData, NEO.Core.TransferTransaction.class);
+        			} else if(TransactionType.ContractTransaction.value() == type) {
+        				NEO.Core.Transaction tx = Serializable.from(trans[i].rawData, NEO.Core.ContractTransaction.class);
         				txMap.put(tx, trans[i].height);
         			}
 				} catch (Exception e) {

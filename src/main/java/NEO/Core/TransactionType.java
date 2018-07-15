@@ -5,17 +5,17 @@ package NEO.Core;
  */
 public enum TransactionType {
     /**
-     *  used for accounting
+     *  
      */
-    BookKeeping(0x00),
+    MinerTransaction(0x00),
     /**
-     *  used for accounting
+     *  
      */
     IssueTransaction(0x01),
     /**
      *  
      */
-    BookKeeper(0x02),
+    ClaimTransaction(0x02),
     /**
      * 
      */
@@ -23,15 +23,15 @@ public enum TransactionType {
     /**
      *  
      */
-    PrivacyPayload(0x20),
+    EnrollmentTransaction(0x20),
     /**
      *  
      */
     RegisterTransaction(0x40),
     /**
-     *  used for transfering Transaction, this is 
+     *  used for transfer global asset 
      */
-    TransferTransaction(0x80), 
+    ContractTransaction(0x80), 
     /**
      * used for storing certificate
      */
@@ -52,6 +52,9 @@ public enum TransactionType {
      */
     DestroyTransaction(0x18),
     PublishTransaction(0xd0),
+    /**
+     *  used for change state in blockchain, for example: transfer nep5 asset 
+     */
     InvocationTransaction(0xd1),
     
     ;

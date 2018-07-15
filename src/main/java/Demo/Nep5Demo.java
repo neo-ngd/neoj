@@ -1,3 +1,5 @@
+package Demo;
+
 import NEO.Core.SignatureContext;
 import NEO.Core.Transaction;
 import NEO.Helper;
@@ -21,12 +23,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * neo sdk 测试Demo
- * 
- * @PeterLinX
- * 
- */
+
 public class Nep5Demo {
 	public static String privatekey1 = "1094e90dd7c4fdfd849c14798d725ac351ae0d924b29a279a9ffa77d5737bd96";
 	public static String privatekey2 = "bc254cf8d3910bc615ba6bf09d4553846533ce4403bc24f58660ae150a6d64cf";

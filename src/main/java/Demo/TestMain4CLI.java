@@ -1,3 +1,5 @@
+package Demo;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,12 +14,6 @@ import NEO.sdk.info.transaction.TransactionInfo;
 import NEO.sdk.wallet.AccountManager;
 
 
-/**
- * NEO sdk 测试Demo
- * 
- * @author 12146
- * 
- */
 public class TestMain4CLI {
 
 	public static void main(String[] args) throws Exception {
