@@ -36,16 +36,5 @@
     }
   },
   "ApplicationConfiguration": {
-    "DataDirectoryPath": "Chains/Main",
-    "NotificationDataPath": "Chains/Main_Notif",
-    "RPCPort": 10332,
-    "NodePort": 10333,
-    "WsPort": 10334,
-    "UriPrefix": [ "http://*:10332" ],
-    "SslCert": "",
-    "SslCertPassword": "",
-    "BootstrapFile": "https://s3.us-east-2.amazonaws.com/cityofzion/bootstrap_main/Main2600xxx.tar.gz",
-    "NotificationBootstrapFile": "https://s3.us-east-2.amazonaws.com/cityofzion/bootstrap_main/MainNotif2600xxx.tar.gz",
-    "DebugStorage":1
   }
 }
