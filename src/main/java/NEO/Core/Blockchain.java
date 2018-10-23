@@ -100,6 +100,10 @@ public abstract class Blockchain implements AutoCloseable {
     @Override
     public abstract void close();
 
+    public static final UInt256 GoverningToken = UInt256.parse("c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b");
+
+    public static final UInt256 UtilityToken = UInt256.parse("602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7");
+
     /**
      *  判断区块链中是否包含指定的资产
      *  <param name="hash">资产编号</param>

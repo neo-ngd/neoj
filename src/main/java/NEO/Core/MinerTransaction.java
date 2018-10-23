@@ -14,15 +14,24 @@ public class MinerTransaction extends Transaction {
 
 	@Override
 	protected void deserializeExclusiveData(BinaryReader reader) throws IOException {
-		if(version == 3) {
-			nonce = reader.readLong();
-		}
+		nonce = reader.readInt();
 	}
 	
 	@Override
 	protected void serializeExclusiveData(BinaryWriter writer) throws IOException {
 		if(version == 3) {
 			writer.writeLong(nonce);
+		}
+	}
+
+	@Override
+	protected void onDeserialized() throws IOException{
+		if (inputs.length != 0)
+			throw new IOException();
+		for (TransactionOutput output : outputs) {
+			//if (output.assetId != Blockchain.utilityToken().hash())
+			if (output.assetId != Blockchain.UtilityToken)
+				throw new IOException();
 		}
 	}
 }

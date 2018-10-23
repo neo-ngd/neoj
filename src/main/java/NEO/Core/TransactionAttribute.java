@@ -31,15 +31,17 @@ public class TransactionAttribute implements Serializable {
 		// usage
         writer.writeByte(usage.value());
         // data
-		if (usage == TransactionAttributeUsage.Script){
+		if (usage == TransactionAttributeUsage.DescriptionUrl){
+			writer.writeByte((byte)data.length);
+		}
+		else if (usage == TransactionAttributeUsage.Description || usage.value() >= TransactionAttributeUsage.Remark.value()) {
+			writer.writeVarInt(data.length);
+		}
+		if (usage == TransactionAttributeUsage.ECDH02 || usage == TransactionAttributeUsage.ECDH03) {
+			writer.write(data, 1, 32);
+		}
+		else
 			writer.write(data);
-		}else if( usage == TransactionAttributeUsage.DescriptionUrl
-        		|| usage == TransactionAttributeUsage.Description
-        		|| usage == TransactionAttributeUsage.Nonce) {
-            writer.writeVarBytes(data);
-        } else {
-            throw new IOException();
-        }
 	}
 
 	@Override
@@ -47,15 +49,23 @@ public class TransactionAttribute implements Serializable {
 		// usage
 		usage = TransactionAttributeUsage.valueOf(reader.readByte());
 		// data
-        if (usage == TransactionAttributeUsage.Script){
+		if (usage == TransactionAttributeUsage.ContractHash || usage == TransactionAttributeUsage.Vote || (usage.value() >= TransactionAttributeUsage.Hash1.value() && usage.value() <= TransactionAttributeUsage.Hash15.value()))
+			data = reader.readBytes(32);
+		else if (usage == TransactionAttributeUsage.ECDH02 || usage == TransactionAttributeUsage.ECDH03) {
+			byte[] part1 = data.clone();
+			byte[] part2 = reader.readBytes(32);
+			data = new byte[part1.length + part2.length];
+			System.arraycopy(part1, 0, data, 0, part1.length);
+			System.arraycopy(part2, 0, data, part1.length, part2.length);
+		}
+		else if (usage == TransactionAttributeUsage.Script)
 			data = reader.readBytes(20);
-		}else if(usage == TransactionAttributeUsage.DescriptionUrl
-        		|| usage == TransactionAttributeUsage.Description
-        		|| usage == TransactionAttributeUsage.Nonce) {
-        			data = reader.readVarBytes(255);
-        } else {
-            throw new IOException();
-        }
+		else if (usage == TransactionAttributeUsage.DescriptionUrl)
+			data = reader.readBytes(reader.readByte());
+		else if (usage == TransactionAttributeUsage.Description || usage.value() >= TransactionAttributeUsage.Remark.value())
+			data = reader.readVarBytes(65535);
+		else
+			throw new IOException();
 	}
 	
 	public JObject json() {

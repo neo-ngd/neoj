@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import NEO.Wallets.*;
 import com.alibaba.fastjson.JSON;
 
 import NEO.Fixed8;
@@ -37,10 +38,6 @@ import NEO.Implementations.Wallets.IUserManager;
 import NEO.Implementations.Wallets.SQLite.UserWallet;
 import NEO.Network.Rest.RestException;
 import NEO.Network.Rest.RestNode;
-import NEO.Wallets.Account;
-import NEO.Wallets.Coin;
-import NEO.Wallets.Contract;
-import NEO.Wallets.Wallet;
 import NEO.sdk.helper.OnChainSDKHelper;
 import NEO.sdk.info.account.AccountAsset;
 import NEO.sdk.info.account.AccountInfo;
@@ -235,7 +232,16 @@ public class AccountManager {
 	public void setAccessToken(String accessToken) {
 		this.restNode.setAccessToken(accessToken);
 	}
-	
+
+	@Deprecated
+	public Transaction makeTransaction(Transaction tx, Fixed8 fee) throws CoinException {
+		return this.uw.makeTransaction(tx, fee);
+	}
+
+	@Deprecated
+	public Transaction makeTransaction(Transaction tx, Fixed8 fee, UInt160 from) throws CoinException {
+		return this.uw.makeTransaction(tx, fee, from);
+	}
 	/**
 	 * 注册资产
 	 * @throws Exception 
