@@ -54,5 +54,10 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java/NEO/data</directory>
+			</resource>
+		</resources>
 	</build>
 </project>
